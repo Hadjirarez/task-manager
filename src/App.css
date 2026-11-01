@@ -1,0 +1,48 @@
+#taskTxt{
+  padding: 20px;
+  border: 1px solid black;
+  outline: none;
+  border-radius: 10px;
+  height: 20px;
+  width: 200px;
+}
+#mainBtn{
+  padding: 20px;
+  color: white;
+  background-color: rgb(83, 83, 83);
+  border-radius: 10px;
+  width: 120px;
+  height: 60px;
+  border: 1px solid black;
+  
+
+}
+
+#mainBtn:hover{
+  color: black;
+  background-color: aliceblue;
+}
+#form{
+  display: flex;
+  gap: 20px;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#warningTxt{
+  color: red;
+  margin-top: -50px;
+  margin-right: 300px;
+}
+
+#tasksList{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-right: 20px;
+}
