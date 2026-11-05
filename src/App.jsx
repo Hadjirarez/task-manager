@@ -9,7 +9,9 @@ function App() {
   const [tasks , setTasks] = useState([])
   const[isWarning , setIsWarning] = useState(false)
   const[editedTask , setEditedTask] = useState(null)
-
+  const [btn , setBtn] = useState("Add")
+  const [searchedTask , setSearchedTask] = useState("")
+ 
 
 const getInput =(event)=>{
   
@@ -27,9 +29,10 @@ setIsWarning(false)
   setTask("")}
 
  
- else  {setTasks((tasks.map((existingTask , index) =>(index === editedTask ? task : existingTask))))
+ else {setTasks((tasks.map((existingTask , index) =>(index === editedTask ? task : existingTask))))
   setTask("")
-  setEditedTask(null)}
+  setEditedTask(null)
+setBtn("Add")}
  }
 
 
@@ -44,24 +47,58 @@ setTasks(tasks.filter((task , index)=>(index != indexToDelete)))
 const editTask=(indexOfEditing)=>{
   setEditedTask(indexOfEditing)
  setTask(tasks[indexOfEditing])
+ setBtn("Save")
 }
+
+
+const indexTask = tasks.map((task , index)=>({
+  task : task ,
+  originalIndex : index
+ }))
+  
+const foundTasks = indexTask.filter((item)  =>  {
+ 
+return(
+ item.task.toLowerCase().includes(searchedTask.toLowerCase()))
+  
+
+}
+
+  
+  
+ 
+ 
+)
+
+const searchTasks=(event) =>{
+setSearchedTask(event.target.value)
+
+
+}
+
 
 
   return (
     <div className='container'>
       <h1>MY TO DO LIST</h1>
+      <div id='searchDiv'>
+   <label htmlFor="">Search Tasks :</label>
+      <input id='searchBar' onChange={searchTasks} type="text" placeholder='enter a task to search' />
+      </div>
+   
       <div className='formContainer'>
         <form id='form' action="">
           <input value = {task} onChange={getInput} id='taskTxt' type="text" placeholder='Enter your task' />
-          <button type='button' onClick={handler} id='mainBtn'>Add</button>
+          <button type='button' onClick={handler} id='mainBtn'>{btn}</button>
        
         </form>
 
       </div>
       <p>My Tasks</p>
   {  isWarning ? <p id='warningTxt'>fill this input</p> : null}
- { <ul id='tasksList'>{tasks.map((task , index) =>(
-  <li key={index}>{task} <button onClick={()=>deleteTask(index)} >Delete</button> <button onClick={()=>editTask(index)}>Edit</button> </li>
+  
+ { <ul id='tasksList'>{  foundTasks.map((item) =>(
+  <li key={item.originalIndex}>{item.task} <button onClick={()=>deleteTask(item.originalIndex)} >Delete</button> <button onClick={()=>editTask(item.originalIndex)}>Edit</button> </li>
  ))}
   </ul>
 

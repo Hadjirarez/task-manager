@@ -46,3 +46,22 @@
   gap: 10px;
   margin-right: 20px;
 }
+
+#searchBar{
+  padding: 10px;
+ outline: none;
+ border-radius: 10px;
+ border: 1px solid black;
+ margin:10px ;
+
+
+}
+
+#searchDiv{
+  display: flex;
+   position: absolute;
+ right: 40px;
+ top: 40px;
+ align-items: center;
+ justify-content: center;
+}
