@@ -1,17 +1,27 @@
 
 import './App.css'
-import {useState} from 'react'
+import {useState , useEffect} from 'react'
 
 function App() {
 
 
   const [task , setTask] = useState("")
-  const [tasks , setTasks] = useState([])
+  const [tasks , setTasks] = useState( ()=>{ const savedTasks = localStorage.getItem("tasks") 
+    if(savedTasks=== null) return ([]); else{return( JSON.parse(savedTasks))}})
   const[isWarning , setIsWarning] = useState(false)
   const[editedTask , setEditedTask] = useState(null)
   const [btn , setBtn] = useState("Add")
   const [searchedTask , setSearchedTask] = useState("")
+console.log(tasks)
+console.log(Array.isArray(tasks))
+
+ useEffect(()=>{
+const localedTasks = JSON.stringify(tasks)
+ localStorage.setItem("tasks" , localedTasks)
+
+  } , [tasks])
  
+
 
 const getInput =(event)=>{
   
