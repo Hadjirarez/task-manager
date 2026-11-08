@@ -12,8 +12,7 @@ function App() {
   const[editedTask , setEditedTask] = useState(null)
   const [btn , setBtn] = useState("Add")
   const [searchedTask , setSearchedTask] = useState("")
-console.log(tasks)
-console.log(Array.isArray(tasks))
+
 
  useEffect(()=>{
 const localedTasks = JSON.stringify(tasks)
@@ -86,7 +85,9 @@ setSearchedTask(event.target.value)
 
 }
 
-
+const clearedTasks =()=>{
+ setTasks([])
+}
 
   return (
     <div className='container'>
@@ -100,6 +101,7 @@ setSearchedTask(event.target.value)
         <form id='form' action="">
           <input value = {task} onChange={getInput} id='taskTxt' type="text" placeholder='Enter your task' />
           <button type='button' onClick={handler} id='mainBtn'>{btn}</button>
+          <button type='button' onClick={clearedTasks} id='mainBtn'>Clear All</button>
        
         </form>
 
